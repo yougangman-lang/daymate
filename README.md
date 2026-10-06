@@ -22,8 +22,25 @@ npm test           # 단위 테스트 (Vitest)
 npm run test:e2e   # E2E 테스트 (Playwright, 모바일 375px + 데스크톱)
 ```
 
-`dist/`는 상대 경로 + HashRouter로 빌드되어 어떤 정적 호스팅(GitHub Pages, Netlify, S3 등)에도 그대로 올릴 수 있습니다.
 E2E 테스트를 처음 실행하는 환경이라면 `npx playwright install chromium`이 필요할 수 있습니다.
+
+## Vercel 배포
+
+| 항목 | 값 |
+| --- | --- |
+| Framework Preset | Vite |
+| Root Directory | `./` (저장소 루트, 비워 두면 됨) |
+| Install Command | `npm ci` |
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
+| Node.js | 20.x 이상 (22.x 권장) |
+
+위 값은 `vercel.json`에도 들어 있어 대시보드에서 따로 바꾸지 않아도 됩니다.
+
+라우팅은 HashRouter(`/#/explore`)를 사용합니다. 해시 주소는 서버에 항상 `/`로 요청되므로 새로고침해도 404가 나지 않습니다.
+`/explore`, `/groups/g01`처럼 해시 없는 주소로 직접 접속하는 경우를 위해 `vercel.json`이 모든 경로를 `index.html`로 재작성하고,
+앱이 시작될 때 같은 화면의 해시 주소(`/#/explore`)로 바꿉니다. 자산은 절대 경로(`/assets/...`)로 빌드되어 깊은 경로에서도 정상 로드됩니다.
+하위 경로에 배포하는 다른 호스팅에서는 `VITE_BASE=/하위경로/ npm run build`로 빌드하세요.
 
 ## 화면
 
@@ -80,7 +97,7 @@ E2E 테스트를 처음 실행하는 환경이라면 `npx playwright install chr
 
 ## 검증
 - `npm test` — 27개 단위 테스트: 근접도 계산, 5문항 미완료 시 미확정, 결과 수정 반영, 필터(활동·날짜·시간·예산·조건·차단), 정렬, 역매칭 동의/중복 초대/정원/거절·취소/차단, 신고, 그룹 생성 검증, 저장소 복구
-- `npm run test:e2e` — 41개 E2E 테스트 (모바일 375px, 데스크톱 1280px): 실제 화면에서 위 흐름 전체, XSS 입력, 13개 화면 가로 넘침·터치 영역(40px 이상), 모달 화면 내 표시·Esc 닫기·포커스 가두기/복귀, 키보드 문항 선택
+- `npm run test:e2e` — 46개 E2E 테스트 (모바일 375px, 데스크톱 1280px): 실제 화면에서 위 흐름 전체, XSS 입력, 13개 화면 가로 넘침·터치 영역(40px 이상), 모달 화면 내 표시·Esc 닫기·포커스 가두기/복귀, 키보드 문항 선택, 해시 없는 경로 직접 접속·새로고침
 
 ## 실제 운영 시 연결이 필요한 기능
 | 기능 | 시제품 | 운영 시 필요 |

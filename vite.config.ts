@@ -1,9 +1,11 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 
-// 정적 호스팅 어디서나 동작하도록 상대 경로로 빌드한다 (라우팅은 HashRouter 사용).
+// 라우팅은 HashRouter를 사용한다. 자산은 절대 경로(/assets/...)로 참조해야
+// /groups/g01 같은 깊은 경로로 직접 접속해도 자산 요청이 index.html로 재작성되지 않는다.
+// 하위 경로에 배포할 때는 VITE_BASE=/sub/path/ 로 지정한다.
 export default defineConfig({
-  base: './',
+  base: process.env.VITE_BASE || '/',
   plugins: [react()],
   server: { host: true, port: 5173 },
   preview: { host: true, port: 4173 },
