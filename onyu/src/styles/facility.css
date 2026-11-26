@@ -1,0 +1,74 @@
+/* 시설 둘러보기·무료체험 안내 (공개 화면). 기존 디자인 토큰 사용, .onyu-ft 접두어로 범위 제한 */
+.onyu-ft { max-width: 1120px; margin: 0 auto; padding: 1rem 16px calc(3rem + env(safe-area-inset-bottom)); color: var(--ink); }
+.onyu-ft-heading { display: grid; gap: 0.5rem; justify-items: start; }
+.onyu-ft-topbar { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+.onyu-ft-topbar .btn { white-space: nowrap; }
+.onyu-ft h1 { font-size: 2rem; margin-top: 0.25rem; }
+.onyu-ft h2 { font-size: 1.4rem; margin-bottom: 1rem; }
+.onyu-ft .onyu-ft-note { font-size: 1rem; color: var(--muted); }
+
+.onyu-ft-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.75rem 0; align-items: start; }
+.onyu-ft-map-panel, .onyu-ft-detail, .onyu-ft-tour, .onyu-ft-trial {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 1.5rem; min-width: 0;
+}
+
+.onyu-ft-map {
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px;
+  grid-template-areas:
+    'fitness fitness fitness fitness office office'
+    'fitness fitness fitness fitness reception reception'
+    'lounge lounge lounge shower shower shower'
+    'passage passage passage passage storage storage';
+}
+.onyu-ft-room {
+  min-height: 6rem; padding: 0.75rem 0.4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.1rem;
+  text-align: center; font-size: 1.25rem; line-height: 1.35; color: var(--ink); background: var(--surface-2);
+  border: 2px solid var(--line-strong); border-radius: 14px; cursor: pointer;
+}
+.onyu-ft-room strong { font-weight: 800; word-break: keep-all; }
+.onyu-ft-room span, .onyu-ft-room small { font-size: 1rem; font-weight: 700; }
+.onyu-ft-room:hover { border-color: var(--primary); }
+.onyu-ft-room[aria-pressed='true'] { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: inset 0 0 0 3px var(--surface); }
+.onyu-ft-fitness { grid-area: fitness; } .onyu-ft-office { grid-area: office; } .onyu-ft-reception { grid-area: reception; }
+.onyu-ft-lounge { grid-area: lounge; } .onyu-ft-shower { grid-area: shower; } .onyu-ft-storage { grid-area: storage; } .onyu-ft-passage { grid-area: passage; }
+
+.onyu-ft-detail { scroll-margin-top: 1rem; display: grid; gap: 0.75rem; }
+.onyu-ft-detail:focus-visible { outline: 3px solid var(--primary); outline-offset: 4px; }
+.onyu-ft-detail-title { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem; }
+.onyu-ft-detail-title h2 { margin: 0; }
+.onyu-ft-detail-title span { color: var(--primary-dark); font-weight: 800; }
+.onyu-ft figure { margin: 0; }
+.onyu-ft figure img, .onyu-ft-scene { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; border-radius: 14px; }
+.onyu-ft figcaption { font-size: 1rem; margin-top: 0.4rem; color: var(--muted); }
+.onyu-ft-summary { font-weight: 700; }
+.onyu-ft-detail ul { padding-left: 1.5rem; display: grid; gap: 0.6rem; }
+
+.onyu-ft-tour { display: grid; gap: 0.75rem; }
+.onyu-ft-tour h2 { margin: 0; }
+.onyu-ft-tour ol { list-style: none; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.onyu-ft-tour ol li { flex: 1 1 9rem; }
+.onyu-ft-tour ol button {
+  width: 100%; height: 100%; min-height: var(--tap); padding: 0.6rem 0.9rem; display: flex; gap: 0.6rem; align-items: center; text-align: left;
+  font-weight: 700; font-size: 1.1rem; color: var(--ink); background: var(--surface); border: 2px solid var(--line-strong); border-radius: 14px; cursor: pointer;
+}
+.onyu-ft-tour ol button span {
+  flex: none; width: 1.9rem; height: 1.9rem; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); font-weight: 800;
+}
+.onyu-ft-tour [aria-current='step'] { background: var(--primary); color: #fff; border-color: var(--primary); }
+.onyu-ft-tour [aria-current='step'] span { background: #fff; color: var(--primary-dark); }
+.onyu-ft-tour [role='status'] { font-weight: 700; }
+.onyu-ft-actions { display: flex; gap: 0.75rem; }
+.onyu-ft-actions .btn { flex: 1; }
+
+.onyu-ft-trial { margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; flex-wrap: wrap; }
+.onyu-ft-trial h2 { margin-bottom: 0.5rem; }
+
+@media (max-width: 760px) {
+  .onyu-ft-layout { grid-template-columns: 1fr; }
+  .onyu-ft-map-panel, .onyu-ft-detail, .onyu-ft-tour, .onyu-ft-trial { padding: 1.1rem; }
+  .onyu-ft-map {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: 'fitness office' 'fitness reception' 'lounge shower' 'passage storage';
+  }
+  .onyu-ft-trial .btn { width: 100%; }
+}

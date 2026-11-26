@@ -27,6 +27,9 @@ export function Entry() {
           <button type="button" className="btn btn-secondary" onClick={() => go('staff')}>
             운영진(매니저·코치) 화면 보기
           </button>
+          <button type="button" className="btn btn-ghost" onClick={() => navigate('/facility', { state: { from: '/' } })}>
+            시설 둘러보기
+          </button>
         </div>
       </div>
     </main>

@@ -45,15 +45,15 @@ export function SpeakControls({ text, label, rate = 'normal' }: { text: string; 
   return (
     <div className="row no-print" role="group" aria-label={`${label} 음성 안내`}>
       {state === 'playing' ? (
-        <button type="button" className="btn btn-secondary btn-sm" onClick={stop}>
+        <button type="button" className="btn btn-secondary" onClick={stop}>
           <Icon name="stop" size={20} /> 멈추기
         </button>
       ) : state === 'done' ? (
-        <button type="button" className="btn btn-secondary btn-sm" onClick={play}>
+        <button type="button" className="btn btn-secondary" onClick={play}>
           <Icon name="replay" size={20} /> 다시 듣기
         </button>
       ) : (
-        <button type="button" className="btn btn-secondary btn-sm" onClick={play}>
+        <button type="button" className="btn btn-secondary" onClick={play}>
           <Icon name="speaker" size={20} /> 읽어주기
         </button>
       )}

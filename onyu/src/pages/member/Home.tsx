@@ -132,6 +132,10 @@ export function MemberHome() {
         ))}
       </nav>
 
+      <Link className="btn btn-secondary btn-block" to="/facility" state={{ from: '/member' }}>
+        <Icon name="info" size={22} /> 시설 둘러보기
+      </Link>
+
       {alerts.length > 0 && (
         <section aria-labelledby="alert-title" className="stack">
           <div className="section-title">
