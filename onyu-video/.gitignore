@@ -1,0 +1,6 @@
+node_modules/
+out/
+footage/
+public/footage/*.mp4
+public/footage/*.mov
+.remotion/

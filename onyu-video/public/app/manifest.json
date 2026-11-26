@@ -1,0 +1,686 @@
+{
+  "entry": {
+    "file": "app/entry.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "start": {
+        "x": 16,
+        "y": 451,
+        "w": 398,
+        "h": 68
+      },
+      "facility": {
+        "x": 16,
+        "y": 614,
+        "w": 398,
+        "h": 68
+      }
+    },
+    "url": "/"
+  },
+  "facility_map": {
+    "file": "app/facility_map.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "map": {
+        "x": 35,
+        "y": 387,
+        "w": 361,
+        "h": 413
+      },
+      "note": {
+        "x": 16,
+        "y": 269,
+        "w": 287,
+        "h": 26
+      }
+    },
+    "url": "/facility"
+  },
+  "facility_fitness": {
+    "file": "app/facility_fitness.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "detail": {
+        "x": 16,
+        "y": 239,
+        "w": 398,
+        "h": 734
+      },
+      "room": {
+        "x": 35,
+        "y": -263,
+        "w": 176,
+        "h": 200
+      }
+    },
+    "url": "/facility"
+  },
+  "facility_measure": {
+    "file": "app/facility_measure.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "detail": {
+        "x": 16,
+        "y": 240,
+        "w": 398,
+        "h": 629
+      },
+      "room": {
+        "x": 219,
+        "y": -268,
+        "w": 176,
+        "h": 101
+      }
+    },
+    "url": "/facility"
+  },
+  "facility_lounge": {
+    "file": "app/facility_lounge.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "detail": {
+        "x": 16,
+        "y": 240,
+        "w": 398,
+        "h": 693
+      },
+      "room": {
+        "x": 35,
+        "y": -60,
+        "w": 176,
+        "h": 101
+      }
+    },
+    "url": "/facility"
+  },
+  "facility_shower": {
+    "file": "app/facility_shower.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "detail": {
+        "x": 16,
+        "y": 240,
+        "w": 398,
+        "h": 587
+      },
+      "room": {
+        "x": 219,
+        "y": -60,
+        "w": 176,
+        "h": 101
+      }
+    },
+    "url": "/facility"
+  },
+  "facility_tour": {
+    "file": "app/facility_tour.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "tour": {
+        "x": 16,
+        "y": 280,
+        "w": 398,
+        "h": 379
+      }
+    },
+    "url": "/facility"
+  },
+  "trial": {
+    "file": "app/trial.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "steps": {
+        "x": 16,
+        "y": 285,
+        "w": 398,
+        "h": 439
+      }
+    },
+    "url": "/trial"
+  },
+  "trial_note": {
+    "file": "app/trial_note.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "note": {
+        "x": 16,
+        "y": 259,
+        "w": 398,
+        "h": 312
+      }
+    },
+    "url": "/trial"
+  },
+  "member_home": {
+    "file": "app/member_home.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "next": {
+        "x": 16,
+        "y": 270,
+        "w": 398,
+        "h": 428
+      },
+      "book": {
+        "x": 16,
+        "y": 726,
+        "w": 193,
+        "h": 116
+      },
+      "bar": {
+        "x": 0,
+        "y": 0,
+        "w": 430,
+        "h": 87
+      }
+    },
+    "url": "/member"
+  },
+  "book_dates": {
+    "file": "app/book_dates.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "today": {
+        "x": 16,
+        "y": 589,
+        "w": 398,
+        "h": 87
+      }
+    },
+    "url": "/member/book"
+  },
+  "book_times": {
+    "file": "app/book_times.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "slot": {
+        "x": 16,
+        "y": 754,
+        "w": 398,
+        "h": 195
+      },
+      "slots": {
+        "x": 16,
+        "y": 340,
+        "w": 398,
+        "h": 1438
+      }
+    },
+    "url": "/member/book?date=2026-11-25"
+  },
+  "book_confirm": {
+    "file": "app/book_confirm.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "pass": {
+        "x": 127,
+        "y": 767,
+        "w": 266,
+        "h": 64
+      },
+      "cta": {
+        "x": 221,
+        "y": 1222,
+        "w": 193,
+        "h": 56
+      }
+    },
+    "url": "/member/book?date=2026-11-25&session=s-20261125-1030"
+  },
+  "book_done": {
+    "file": "app/book_done.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "title": {
+        "x": 118,
+        "y": 374,
+        "w": 195,
+        "h": 36
+      }
+    },
+    "url": "/member/book/done/bk-ac78c62029f9"
+  },
+  "condition_empty": {
+    "file": "app/condition_empty.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "radios": {
+        "x": 37,
+        "y": 160,
+        "w": 356,
+        "h": 327
+      }
+    },
+    "url": "/member/book/done/bk-ac78c62029f9"
+  },
+  "condition_filled": {
+    "file": "app/condition_filled.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "knee": {
+        "x": 169,
+        "y": 437,
+        "w": 64,
+        "h": 46
+      },
+      "memo": {
+        "x": 37,
+        "y": 587,
+        "w": 356,
+        "h": 56
+      },
+      "send": {
+        "x": 37,
+        "y": 659,
+        "w": 356,
+        "h": 56
+      }
+    },
+    "url": "/member/book/done/bk-ac78c62029f9"
+  },
+  "condition_sent": {
+    "file": "app/condition_sent.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "ok": {
+        "x": 92,
+        "y": 674,
+        "w": 272,
+        "h": 20
+      }
+    },
+    "url": "/member/book/done/bk-ac78c62029f9"
+  },
+  "staff_home": {
+    "file": "app/staff_home.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "main": {
+        "x": 0,
+        "y": 360,
+        "w": 430,
+        "h": 2809
+      }
+    },
+    "url": "/staff"
+  },
+  "staff_classes": {
+    "file": "app/staff_classes.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "row": {
+        "x": 16,
+        "y": 1103,
+        "w": 398,
+        "h": 119
+      }
+    },
+    "url": "/staff/classes"
+  },
+  "session_top": {
+    "file": "app/session_top.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "main": {
+        "x": 0,
+        "y": 360,
+        "w": 430,
+        "h": 1467
+      }
+    },
+    "url": "/staff/classes/s-20261125-1030"
+  },
+  "session_member": {
+    "file": "app/session_member.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "card": {
+        "x": 16,
+        "y": 320,
+        "w": 398,
+        "h": 771
+      },
+      "cond": {
+        "x": 37,
+        "y": 421,
+        "w": 135,
+        "h": 30
+      }
+    },
+    "url": "/staff/classes/s-20261125-1030"
+  },
+  "session_attended": {
+    "file": "app/session_attended.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "card": {
+        "x": 16,
+        "y": 320,
+        "w": 398,
+        "h": 898
+      },
+      "ok": {
+        "x": 92,
+        "y": 1156,
+        "w": 139,
+        "h": 20
+      }
+    },
+    "url": "/staff/classes/s-20261125-1030"
+  },
+  "coach_card": {
+    "file": "app/coach_card.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "card": {
+        "x": 16,
+        "y": 319,
+        "w": 398,
+        "h": 1242
+      }
+    },
+    "url": "/staff/classes/s-20261125-1030"
+  },
+  "coach_written": {
+    "file": "app/coach_written.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "good": {
+        "x": 57,
+        "y": 464,
+        "w": 316,
+        "h": 96
+      },
+      "next": {
+        "x": 57,
+        "y": 609,
+        "w": 316,
+        "h": 96
+      },
+      "publish": {
+        "x": 57,
+        "y": 789,
+        "w": 316,
+        "h": 56
+      }
+    },
+    "url": "/staff/classes/s-20261125-1030"
+  },
+  "member_news": {
+    "file": "app/member_news.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "news": {
+        "x": 69,
+        "y": 340,
+        "w": 281,
+        "h": 32
+      }
+    },
+    "url": "/member"
+  },
+  "member_feedback": {
+    "file": "app/member_feedback.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "fb": {
+        "x": 16,
+        "y": 319,
+        "w": 398,
+        "h": 652
+      },
+      "more": {
+        "x": 37,
+        "y": 894,
+        "w": 356,
+        "h": 56
+      }
+    },
+    "url": "/member/body#feedback"
+  },
+  "member_feedback_more": {
+    "file": "app/member_feedback_more.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "fb": {
+        "x": 16,
+        "y": 319,
+        "w": 398,
+        "h": 747
+      },
+      "sent": {
+        "x": 92,
+        "y": 978,
+        "w": 278,
+        "h": 47
+      }
+    },
+    "url": "/member/body#feedback"
+  },
+  "measure_received": {
+    "file": "app/measure_received.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "ok": {
+        "x": 92,
+        "y": 440,
+        "w": 280,
+        "h": 47
+      },
+      "btn": {
+        "x": 37,
+        "y": 253,
+        "w": 356,
+        "h": 56
+      }
+    },
+    "url": "/staff/measurements"
+  },
+  "measure_explain": {
+    "file": "app/measure_explain.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "expl": {
+        "x": 37,
+        "y": 420,
+        "w": 356,
+        "h": 182
+      },
+      "publish": {
+        "x": 37,
+        "y": 830,
+        "w": 356,
+        "h": 56
+      }
+    },
+    "url": "/staff/measurements/ms-f63f44a4e3dc"
+  },
+  "body_top": {
+    "file": "app/body_top.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "main": {
+        "x": 0,
+        "y": 157,
+        "w": 430,
+        "h": 5060
+      }
+    },
+    "url": "/member/body"
+  },
+  "body_explain": {
+    "file": "app/body_explain.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "explain": {
+        "x": 16,
+        "y": 299,
+        "w": 398,
+        "h": 320
+      },
+      "speak": {
+        "x": 37,
+        "y": 542,
+        "w": 133,
+        "h": 56
+      }
+    },
+    "url": "/member/body"
+  },
+  "body_compare": {
+    "file": "app/body_compare.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "cmp": {
+        "x": 51,
+        "y": 400,
+        "w": 146,
+        "h": 51
+      }
+    },
+    "url": "/member/body"
+  },
+  "body_report": {
+    "file": "app/body_report.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "main": {
+        "x": 0,
+        "y": 157,
+        "w": 430,
+        "h": 2330
+      }
+    },
+    "url": "/member/body/report"
+  },
+  "member_large": {
+    "file": "app/member_large.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "toggle": {
+        "x": 182,
+        "y": 168,
+        "w": 112,
+        "h": 67
+      }
+    },
+    "url": "/member"
+  },
+  "member_help": {
+    "file": "app/member_help.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "main": {
+        "x": 0,
+        "y": 157,
+        "w": 430,
+        "h": 1126
+      }
+    },
+    "url": "/member/me/help"
+  },
+  "mall": {
+    "file": "app/mall.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "main": {
+        "x": 0,
+        "y": 157,
+        "w": 430,
+        "h": 2982
+      }
+    },
+    "url": "/member/mall"
+  },
+  "mall_code": {
+    "file": "app/mall_code.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "code": {
+        "x": 37,
+        "y": 449,
+        "w": 211,
+        "h": 56
+      },
+      "ok": {
+        "x": 92,
+        "y": 264,
+        "w": 187,
+        "h": 20
+      }
+    },
+    "url": "/member/mall/pd1"
+  },
+  "mall_purchase": {
+    "file": "app/mall_purchase.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "demo": {
+        "x": 36,
+        "y": -383,
+        "w": 359,
+        "h": 32
+      },
+      "total": {
+        "x": 296,
+        "y": 540,
+        "w": 97,
+        "h": 45
+      }
+    },
+    "url": "/member/mall/pd1/purchase"
+  },
+  "staff_mall": {
+    "file": "app/staff_mall.png",
+    "w": 430,
+    "h": 932,
+    "boxes": {
+      "main": {
+        "x": 0,
+        "y": 360,
+        "w": 430,
+        "h": 2719
+      }
+    },
+    "url": "/staff/mall"
+  }
+}

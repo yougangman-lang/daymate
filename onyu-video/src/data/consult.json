@@ -1,0 +1,25 @@
+{
+  "_doc": "상담 촬영본 도착 후 채운다. clips: 컷 순서대로 (src는 public/ 기준 경로, trimStart/trimEnd 초). inserts: 해당 컷 시작 기준 at초부터 dur초 동안 앱 화면 삽입. subtitles: 실제 음성을 듣고 확인한 문장만.",
+  "clips": [],
+  "inserts": [],
+  "subtitles": [],
+  "_plan": {
+    "clips": [
+      { "src": "footage/consult_1.mp4", "question": null },
+      { "src": "footage/consult_2.mp4", "question": "다음 수업에서도 제 상태에 맞춰 운동할 수 있나요?" },
+      { "src": "footage/consult_3.mp4", "question": "측정 결과는 어떻게 보면 되나요?" },
+      { "src": "footage/consult_4.mp4", "question": "앱 사용이 어려우면 어떻게 하나요?" },
+      { "src": "footage/consult_5.mp4", "question": null }
+    ],
+    "inserts": [
+      { "clip": 1, "shot": "session_attended", "crop": [0, 300, 430, 382], "hl": "card", "tag": "매니저 화면" },
+      { "clip": 1, "shot": "coach_written", "crop": [0, 380, 430, 382], "hl": "next", "tag": "코치 화면" },
+      { "clip": 1, "shot": "member_feedback", "crop": [0, 300, 430, 382], "tag": "회원 화면" },
+      { "clip": 2, "shot": "body_explain", "crop": [0, 290, 430, 382], "hl": "explain" },
+      { "clip": 2, "shot": "body_compare", "crop": [0, 180, 430, 382], "hl": "cmp" },
+      { "clip": 3, "shot": "member_large", "crop": [0, 160, 430, 382], "hl": "toggle" },
+      { "clip": 3, "shot": "member_help", "crop": [0, 160, 430, 382] },
+      { "clip": 3, "shot": "mall_code", "crop": [0, 200, 430, 382], "hl": "code", "tag": "시연" }
+    ]
+  }
+}

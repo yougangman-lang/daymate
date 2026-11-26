@@ -1,0 +1,29 @@
+{
+  "name": "onyu-video",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio",
+    "capture": "node scripts/capture.cjs",
+    "tts": "python3 scripts/tts.py",
+    "render:intro": "remotion render src/index.ts Intro out/ONYU_Intro.mp4",
+    "render:operations": "remotion render src/index.ts Operations out/ONYU_Operations.mp4",
+    "render:closing": "remotion render src/index.ts Closing out/ONYU_Closing.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.547",
+    "@remotion/media": "4.0.547",
+    "remotion": "4.0.547",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "pretendard": "1.3.9",
+    "@fontsource/noto-serif-kr": "5.2.8",
+    "qrcode": "1.5.4"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "@types/qrcode": "1.5.5",
+    "typescript": "5.9.3"
+  }
+}
