@@ -28,14 +28,6 @@ export function Entry() {
             운영진(매니저·코치) 화면 보기
           </button>
         </div>
-        <div className="panel-soft small" style={{ textAlign: 'left' }}>
-          <strong>대학 과제 발표용 시연 프로토타입이에요.</strong>
-          <ul style={{ paddingLeft: '1.2rem', marginTop: 6 }}>
-            <li>회원·건강 정보·가격·제휴 조건은 모두 가상 데이터예요.</li>
-            <li>실제 결제, 실제 인바디 연동, 실제 로그인은 없어요. 화면 위쪽의 역할 전환은 시연 장치예요.</li>
-            <li>상태는 이 브라우저에만 저장되고 다른 기기와 동기화되지 않아요.</li>
-          </ul>
-        </div>
       </div>
     </main>
   );
