@@ -29,9 +29,9 @@ export function MemberHome() {
   const actions: { text: string; to: string }[] = [];
   if (next && !next.booking.condition) actions.push({ text: '다음 수업 전에 컨디션을 알려주세요.', to: '/member/me#bookings' });
   if (unanswered.length) actions.push({ text: `코치 피드백 ${unanswered.length}건을 읽고 응답해 주세요.`, to: '/member/body#feedback' });
-  if (status.kind === 'paid' && status.daysLeft <= 7) actions.push({ text: `회원권이 ${status.daysLeft}일 남았어요. 연장은 매니저에게 문의해 주세요.`, to: '/member/me/help' });
+  if (status.kind === 'paid' && status.daysLeft <= 7) actions.push({ text: `회원권이 ${status.daysLeft}일 남았어요. 연장은 온유 담당자에게 문의해 주세요.`, to: '/member/me/help' });
   if (status.kind === 'trial' && status.remaining > 0) actions.push({ text: `무료체험이 ${status.remaining}회 남았어요. 수업을 예약해 보세요.`, to: '/member/book' });
-  if (status.kind === 'expired' || status.kind === 'paused') actions.push({ text: '회원권 상태를 확인하려면 매니저에게 도움을 요청해 주세요.', to: '/member/me/help' });
+  if (status.kind === 'expired' || status.kind === 'paused') actions.push({ text: '회원권 상태를 확인하려면 온유 담당자에게 도움을 요청해 주세요.', to: '/member/me/help' });
   if (!next && (status.kind === 'paid' || (status.kind === 'trial' && status.remaining > 0))) actions.push({ text: '예정된 수업이 없어요. 다음 수업을 예약해 보세요.', to: '/member/book' });
 
   const shortcuts: { to: string; label: string; icon: IconName }[] = [
@@ -87,16 +87,18 @@ export function MemberHome() {
               <dd>
                 {next.session.program.title} + {GAMES[next.session.program.game].name}
               </dd>
-              <dt>담당 지도자</dt>
+              <dt>담당 코치</dt>
+              <dd>{next.session.coachIds.map((c) => staffName(state, c)).join(' · ')}</dd>
+              <dt>수업 매니저</dt>
               <dd>
-                온유 코치 <StaffNameLink id={next.session.managerId} /> · 코치 {next.session.coachIds.map((c) => staffName(state, c)).join(', ')}
+                <StaffNameLink id={next.session.managerId} />
               </dd>
               <dt>컨디션</dt>
               <dd>
                 <ConditionSummary booking={next.booking} />
               </dd>
             </dl>
-            {saved && !editing && <Notice msg={{ kind: 'ok', text: '컨디션을 전달했어요. 매니저와 담당 코치가 수업 전에 확인해요.' }} />}
+            {saved && !editing && <Notice msg={{ kind: 'ok', text: '컨디션을 전달했어요. 온유 운영진이 수업 전에 확인해요.' }} />}
             {editing ? (
               <div className="panel-soft">
                 <ConditionForm

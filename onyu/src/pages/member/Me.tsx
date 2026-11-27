@@ -214,7 +214,7 @@ function InquiryList({ memberId }: { memberId: string }) {
           <span className="tiny muted">{formatDateTime(q.createdAt)}</span>
           {q.answer && (
             <div className="answer">
-              <span className="small strong">매니저 {staffName(state, q.answeredBy)} 답변</span>
+              <span className="small strong">온유 담당자 {staffName(state, q.answeredBy)} 답변</span>
               <p>{q.answer}</p>
             </div>
           )}
@@ -299,7 +299,7 @@ export function HelpPage() {
   return (
     <div className="stack-lg">
       <PageNav back="/member/me" home="/member" />
-      <PageHead title="도움 요청" desc="궁금하거나 어려운 점을 남겨 주세요. 매니저가 확인하고 답변해 드려요. 현장에서는 라운지 안내 데스크에 말씀하셔도 돼요." />
+      <PageHead title="도움 요청" desc="궁금하거나 어려운 점을 남겨 주세요. 온유 담당자가 확인하고 답변해 드려요. 현장에서는 라운지 안내 데스크에 말씀하셔도 돼요." />
       <form className="panel stack" onSubmit={submit}>
         <fieldset className="stack-sm">
           <legend className="strong">어떤 도움이 필요하세요?</legend>

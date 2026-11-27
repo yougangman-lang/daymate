@@ -108,7 +108,7 @@ export function createInquiry(state: AppState, memberId: string, category: Inqui
   const body = cleanText(message, 500);
   if (body.length < 2) return fail('도움이 필요한 내용을 적어 주세요.');
   const inquiry = { id: uid('iq'), memberId, category, message: body, createdAt: now.toISOString(), status: 'open' as const };
-  return ok({ ...state, inquiries: [inquiry, ...state.inquiries] }, undefined, '도움 요청을 보냈어요. 매니저가 답변하면 알려드려요.');
+  return ok({ ...state, inquiries: [inquiry, ...state.inquiries] }, undefined, '도움 요청을 보냈어요. 온유 담당자가 답변하면 알려드려요.');
 }
 
 export function answerInquiry(state: AppState, managerId: string, inquiryId: string, answer: string, now: Date): Result {

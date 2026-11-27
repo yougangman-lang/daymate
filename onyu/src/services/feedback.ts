@@ -75,7 +75,7 @@ export function respondFeedback(state: AppState, memberId: string, feedbackId: s
   return ok(
     { ...state, feedback },
     undefined,
-    response === 'understood' ? '“이해했어요”를 코치에게 전달했어요.' : '“설명이 더 필요해요”를 코치와 매니저에게 전달했어요.',
+    response === 'understood' ? '“이해했어요”를 코치에게 전달했어요.' : '“설명이 더 필요해요”를 담당 코치와 온유 담당자에게 전달했어요.',
   );
 }
 

@@ -78,7 +78,7 @@ export function couponEligibility(state: AppState, memberId: string, productId: 
     case 'upcoming':
       return { ok: false, code: 'upcoming', reason: '회원권 시작일부터 혜택 코드를 받을 수 있어요.' };
     case 'expired':
-      return { ok: false, code: 'expired', reason: '회원권이 만료되어 혜택 코드를 받을 수 없어요. 회원권 연장은 매니저에게 문의해 주세요.' };
+      return { ok: false, code: 'expired', reason: '회원권이 만료되어 혜택 코드를 받을 수 없어요. 회원권 연장은 온유 담당자에게 문의해 주세요.' };
   }
 }
 

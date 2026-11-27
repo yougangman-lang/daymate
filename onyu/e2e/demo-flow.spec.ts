@@ -76,7 +76,7 @@ test('핵심 시연 1~9: 예약 → 출석 → 피드백 → 측정 설명 → �
   await page.getByRole('link', { name: '코치 설명 보기' }).click();
   const fb = page.locator('li.feedback-card', { hasText: '의자에서 일어설 때 무릎 방향' });
   await fb.getByRole('button', { name: '설명이 더 필요해요' }).click();
-  await expect(fb.getByText(/코치와 매니저에게 전달했어요/)).toBeVisible();
+  await expect(fb.getByText(/담당 코치와 온유 담당자에게 전달했어요/)).toBeVisible();
 
   // 운영진 화면에 반영
   await toStaff(page);
@@ -93,7 +93,7 @@ test('핵심 시연 1~9: 예약 → 출석 → 피드백 → 측정 설명 → �
   // 공개 전: 회원은 원본만, 해석은 확인 중
   await toMember(page);
   await page.goto('/member/body');
-  await expect(page.getByText('매니저가 결과를 확인하고 있어요')).toBeVisible();
+  await expect(page.getByText('온유 담당자가 결과를 확인하고 있어요')).toBeVisible();
 
   await toStaff(page);
   await page.getByRole('link', { name: /측정·설명 관리/ }).click();

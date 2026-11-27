@@ -193,9 +193,11 @@ function ConfirmStep({ sessionId, onBack }: { sessionId: string; onBack: () => v
           <dd>{s.program.focus}</dd>
           <dt>연계 게임</dt>
           <dd>{GAMES[s.program.game].name}</dd>
-          <dt>지도자</dt>
+          <dt>담당 코치</dt>
+          <dd>{s.coachIds.map((c) => staffName(state, c)).join(' · ')}</dd>
+          <dt>수업 매니저</dt>
           <dd>
-            온유 코치 <StaffNameLink id={s.managerId} /> · 코치 {s.coachIds.map((c) => staffName(state, c)).join(', ')}
+            <StaffNameLink id={s.managerId} />
           </dd>
           <dt>남은 자리</dt>
           <dd>
@@ -267,7 +269,7 @@ export function BookDone() {
       {b.status === 'booked' && (
         <section className="panel stack" aria-labelledby="cond-title">
           <h2 id="cond-title">수업 전 컨디션을 알려주세요 (선택)</h2>
-          <p className="small muted">알려주신 내용은 매니저와 담당 코치의 수업 화면에 바로 표시돼요.</p>
+          <p className="small muted">알려주신 내용은 온유 운영진의 수업 화면에 바로 표시돼요.</p>
           {done ? <Notice msg={{ kind: 'ok', text: '컨디션을 전달했어요. 수업 때 반영할게요.' }} /> : <ConditionForm booking={b} memberId={memberId} onDone={() => setDone(true)} />}
         </section>
       )}

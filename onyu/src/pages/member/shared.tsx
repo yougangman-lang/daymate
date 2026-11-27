@@ -29,7 +29,7 @@ export function MembershipLine({ state, member, now }: { state: AppState; member
       )}
       {st.kind === 'paused' && <p>휴회 기간이에요 ({formatDate(st.membership.startDate)} ~ {formatDate(st.membership.endDate)}). 휴회 중에는 예약과 회원 혜택을 이용할 수 없어요.</p>}
       {st.kind === 'upcoming' && <p>{formatDate(st.membership.startDate)}부터 회원권이 시작돼요.</p>}
-      {st.kind === 'expired' && <p>{formatDate(st.membership.endDate)}에 회원권이 끝났어요. 연장은 매니저에게 도움을 요청해 주세요.</p>}
+      {st.kind === 'expired' && <p>{formatDate(st.membership.endDate)}에 회원권이 끝났어요. 연장은 온유 담당자에게 도움을 요청해 주세요.</p>}
     </div>
   );
 }

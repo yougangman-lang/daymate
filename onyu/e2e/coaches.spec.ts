@@ -41,6 +41,17 @@ async function expectCardsIntact(page: Page) {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 }
 
+/** 예약 정보: 담당 코치 2명(가상 코치, 서로 다름)과 수업 매니저 1명(코치 소개 인물)을 구분해 표시 */
+async function expectRoles(dl: import('@playwright/test').Locator, managerName: string) {
+  const coachText = (await dl.locator('dt:text-is("담당 코치") + dd').textContent())!.trim();
+  const coaches = coachText.split(' · ');
+  expect(coaches).toHaveLength(2);
+  expect(new Set(coaches).size).toBe(2);
+  for (const c of coaches) expect(ORDER).not.toContain(c);
+  await expect(dl.locator('dt:text-is("수업 매니저") + dd')).toHaveText(managerName);
+  await expect(dl).not.toContainText('온유 코치');
+}
+
 test('시작 화면 → 코치 소개(공개) → 글씨 크게 → 이전으로 시작 화면', async ({ page }, info) => {
   await page.goto('/');
   await page.getByRole('button', { name: '코치 소개' }).click();
@@ -85,15 +96,14 @@ test('회원 홈 → 코치 소개: 5개 탭 유지, 시설 둘러보기 옆 버
   await expect(page).toHaveURL(/\/member$/);
 });
 
-test('예약 화면의 담당 지도자 → 같은 인물의 코치 소개, 새로고침·이전으로', async ({ page }) => {
+test('예약 화면의 수업 매니저 → 같은 인물의 코치 소개, 새로고침·이전으로', async ({ page }) => {
   // 회원 홈 다음 예약
   await page.goto('/member');
   const kv = page.locator('.next-card dl');
-  const homeLink = kv.getByRole('link', { name: /코치 소개 보기$/ });
+  const homeLink = kv.getByRole('link', { name: /소개 보기$/ });
   const homeName = (await homeLink.textContent())!.trim();
   expect(ORDER).toContain(homeName);
-  await expect(kv).toContainText(`온유 코치 ${homeName}`);
-  await expect(kv).not.toContainText('매니저');
+  await expectRoles(kv, homeName);
   await homeLink.click();
   await expect(page).toHaveURL(/\/member\/coaches#coach-/);
   const target = page.locator('.coach-card.is-target');
@@ -113,10 +123,9 @@ test('예약 화면의 담당 지도자 → 같은 인물의 코치 소개, 새�
   await page.getByRole('link', { name: /^10:30 .* 선택$/ }).click();
   await expect(page.getByRole('heading', { name: '예약 내용을 확인해 주세요' })).toBeVisible();
   const confirmUrl = page.url();
-  const link = page.locator('dl.kv').getByRole('link', { name: /코치 소개 보기$/ });
+  const link = page.locator('dl.kv').getByRole('link', { name: /소개 보기$/ });
   const name = (await link.textContent())!.trim();
-  await expect(page.locator('dl.kv')).toContainText(`온유 코치 ${name}`);
-  await expect(page.locator('dl.kv')).not.toContainText('매니저');
+  await expectRoles(page.locator('dl.kv'), name);
   await link.click();
   await expect(page.locator('.coach-card.is-target h2')).toHaveText(name);
   await page.getByRole('button', { name: '이전으로' }).click();

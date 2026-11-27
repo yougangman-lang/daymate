@@ -20,13 +20,13 @@ function eligibility(state: AppState, memberId: string, date: string, now: Date)
   if (!member) return { ok: false, error: '회원 정보를 찾을 수 없어요.' };
   const cover = membershipCovering(member, date);
   if (cover?.status === 'active') return { ok: true, kind: 'paid' };
-  if (cover?.status === 'paused') return { ok: false, error: '이 날짜는 회원권 휴회 기간이에요. 매니저에게 휴회 해제를 요청해 주세요.' };
+  if (cover?.status === 'paused') return { ok: false, error: '이 날짜는 회원권 휴회 기간이에요. 온유 담당자에게 휴회 해제를 요청해 주세요.' };
   if (member.memberships.some((m) => m.status !== 'cancelled')) {
-    return { ok: false, error: '이 날짜에 유효한 회원권이 없어요. 회원권 연장은 매니저에게 문의해 주세요.' };
+    return { ok: false, error: '이 날짜에 유효한 회원권이 없어요. 회원권 연장은 온유 담당자에게 문의해 주세요.' };
   }
   const t = trialUsage(state, memberId, now);
   if (t.remaining > 0) return { ok: true, kind: 'trial' };
-  return { ok: false, error: `무료체험 ${t.total}회를 모두 사용했거나 예약했어요. 회원권 안내는 매니저에게 문의해 주세요.` };
+  return { ok: false, error: `무료체험 ${t.total}회를 모두 사용했거나 예약했어요. 회원권 안내는 온유 담당자에게 문의해 주세요.` };
 }
 
 export function checkBooking(state: AppState, memberId: string, sessionId: string, now: Date): BookCheck {
@@ -110,7 +110,7 @@ export function cancelBooking(state: AppState, memberId: string, bookingId: stri
   if (!b || b.memberId !== memberId) return fail('예약을 찾을 수 없어요.');
   if (b.status !== 'booked') return fail('취소할 수 있는 예약이 아니에요.');
   const s = getSession(b.sessionId);
-  if (!s || sessionStart(s) <= now) return fail('이미 시작한 수업은 앱에서 취소할 수 없어요. 매니저에게 알려 주세요.');
+  if (!s || sessionStart(s) <= now) return fail('이미 시작한 수업은 앱에서 취소할 수 없어요. 온유 담당자에게 알려 주세요.');
   let next: AppState = {
     ...state,
     bookings: state.bookings.map((x) => (x.id === bookingId ? { ...x, status: 'cancelled' as const, cancelledAt: now.toISOString() } : x)),
@@ -160,7 +160,7 @@ export function setCondition(
   const tags = input.tags.filter((t) => CONDITION_TAGS.includes(t));
   const condition = { level: input.level, tags, memo: cleanText(input.memo, 80), at: now.toISOString() };
   const bookings = state.bookings.map((x) => (x.id === bookingId ? { ...x, condition } : x));
-  return ok({ ...state, bookings }, undefined, '컨디션을 전달했어요. 매니저와 담당 코치가 수업 전에 확인해요.');
+  return ok({ ...state, bookings }, undefined, '컨디션을 전달했어요. 온유 운영진이 수업 전에 확인해요.');
 }
 
 export function ackCondition(state: AppState, staffId: string, bookingId: string, now: Date): Result {

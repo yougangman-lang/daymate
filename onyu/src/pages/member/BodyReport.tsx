@@ -6,7 +6,7 @@ import type { BodyValues, Measurement } from '../../domain/types';
 import { formatDate, formatDateShort, formatDateTime, seoulDate } from '../../lib/time';
 import { Empty, PageHead, PageNav } from '../../components/ui';
 
-const EXPL_LABEL = { pending: '설명 확인 전', draft: '매니저 확인 중', published: '설명 공개됨' } as const;
+const EXPL_LABEL = { pending: '설명 확인 전', draft: '온유 담당자 확인 중', published: '설명 공개됨' } as const;
 
 function TrendChart({ list, metric }: { list: Measurement[]; metric: keyof BodyValues }) {
   const def = METRICS.find((m) => m.key === metric)!;

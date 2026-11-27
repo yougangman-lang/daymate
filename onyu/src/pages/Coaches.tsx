@@ -34,7 +34,7 @@ function CoachGrid({ highlight }: { highlight?: string }) {
               <h2 id={nameId}>{staff.name}</h2>
               <p className="coach-role">온유 코치</p>
               <p className="coach-qual">자격 기준: {staff.plannedQualification}</p>
-              {highlight === anchor && <p className="coach-here">예약 화면에서 선택한 담당 지도자예요</p>}
+              {highlight === anchor && <p className="coach-here">예약 화면에서 선택한 수업 매니저예요</p>}
             </div>
           </li>
         );
@@ -80,7 +80,7 @@ export function PublicCoachesPage() {
   );
 }
 
-/** 예약 화면의 담당 지도자 이름. 소개가 있는 인물이면 해당 코치 소개로 연결한다. */
+/** 예약 화면의 수업 매니저 이름. 코치 소개가 있는 인물이면 해당 소개로 연결한다. */
 export function StaffNameLink({ id }: { id: string }) {
   const state = useAppState();
   const { pathname, search } = useLocation();
@@ -88,7 +88,7 @@ export function StaffNameLink({ id }: { id: string }) {
   const name = staffName(state, id);
   if (!p) return <>{name}</>;
   return (
-    <Link to={`/member/coaches#${coachAnchor(p)}`} state={{ from: pathname + search } satisfies BackState} aria-label={`${name} 코치 소개 보기`}>
+    <Link to={`/member/coaches#${coachAnchor(p)}`} state={{ from: pathname + search } satisfies BackState} aria-label={`${name} 소개 보기`}>
       {name}
     </Link>
   );

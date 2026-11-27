@@ -270,7 +270,7 @@ export function createSeed(now: Date): AppState {
   const notifications = [
     { id: 'nt-seed-1', memberId: 'mb01', type: 'feedback' as const, title: '코치 피드백이 도착했어요', body: '지난 수업 피드백을 확인해 보세요.', link: '/member/body#feedback', createdAt: iso(past(1), '16:00'), read: false },
     { id: 'nt-seed-2', memberId: 'mb01', type: 'inquiry' as const, title: '문의에 답변이 왔어요', body: '기타 문의', link: '/member/me#inquiries', createdAt: iso(past(6), '11:00'), read: true },
-    { id: 'nt-seed-3', memberId: 'mb02', type: 'measurement' as const, title: '새 측정 결과가 들어왔어요', body: '쉬운 설명은 매니저가 확인한 뒤 알려드려요.', link: '/member/body', createdAt: iso(past(1), '11:41'), read: false },
+    { id: 'nt-seed-3', memberId: 'mb02', type: 'measurement' as const, title: '새 측정 결과가 들어왔어요', body: '쉬운 설명은 온유 담당자가 확인한 뒤 알려드려요.', link: '/member/body', createdAt: iso(past(1), '11:41'), read: false },
   ];
 
   const firstCoach = buildSession(past(1), '10:30')!.coachIds[0];

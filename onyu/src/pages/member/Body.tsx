@@ -35,7 +35,7 @@ export function BodyPage() {
 
   return (
     <div className="stack-lg">
-      <PageHead title="내 몸 알아보기" desc="측정 기록, 매니저의 쉬운 설명, 코치의 지도 내용을 나눠서 보여드려요." />
+      <PageHead title="내 몸 알아보기" desc="측정 기록, 온유 담당자의 쉬운 설명, 코치의 지도 내용을 나눠서 보여드려요." />
       <nav className="toc" aria-label="이 화면의 순서">
         <a href="#status">1. 내 몸의 상태</a>
         <a href="#explain">2. 쉽게 설명해드려요</a>
@@ -78,19 +78,19 @@ export function BodyPage() {
       <section id="explain" className="panel stack" aria-labelledby="explain-h">
         <div className="section-title">
           <h2 id="explain-h">2. 쉽게 설명해드려요</h2>
-          <span className="tag tag-ok">매니저 확인 후 공개</span>
+          <span className="tag tag-ok">온유 담당자 확인 후 공개</span>
         </div>
         {latest && explanation ? (
           <>
             <p className="explain-text">{explanation}</p>
             <p className="small muted">
-              매니저 {staffName(state, latest.explanation.updatedBy)} 확인 · {latest.explanation.publishedAt && formatDateTime(latest.explanation.publishedAt)}
+              온유 담당자 {staffName(state, latest.explanation.updatedBy)} 확인 · {latest.explanation.publishedAt && formatDateTime(latest.explanation.publishedAt)}
             </p>
             <SpeakControls text={explanation} label="쉬운 설명" rate={rate} />
           </>
         ) : latest ? (
           <>
-            <Notice msg={{ kind: 'info', title: '매니저가 결과를 확인하고 있어요', text: `${formatDate(seoulDate(new Date(latest.measuredAt)))} 측정 결과의 설명을 준비 중이에요. 공개되면 홈에서 알려드려요. 측정 기록은 위에서 먼저 보실 수 있어요.` }} />
+            <Notice msg={{ kind: 'info', title: '온유 담당자가 결과를 확인하고 있어요', text: `${formatDate(seoulDate(new Date(latest.measuredAt)))} 측정 결과의 설명을 준비 중이에요. 공개되면 홈에서 알려드려요. 측정 기록은 위에서 먼저 보실 수 있어요.` }} />
             {lastPublished && (
               <div className="panel-soft stack-sm">
                 <span className="small strong">이전 측정({formatDate(seoulDate(new Date(lastPublished.measuredAt)))}) 설명</span>
@@ -240,7 +240,7 @@ function FeedbackCard({ f, memberId, rate }: { f: Feedback; memberId: string; ra
             설명이 더 필요해요
           </button>
         </div>
-        {f.response && !msg && <p className="small">선택한 응답: <strong>{f.response === 'understood' ? '이해했어요' : '설명이 더 필요해요 – 코치와 매니저에게 전달됨'}</strong></p>}
+        {f.response && !msg && <p className="small">선택한 응답: <strong>{f.response === 'understood' ? '이해했어요' : '설명이 더 필요해요 – 담당 코치와 온유 담당자에게 전달됨'}</strong></p>}
         <Notice msg={msg} />
       </div>
       {f.followUp && (
