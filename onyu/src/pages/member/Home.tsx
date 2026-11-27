@@ -89,7 +89,7 @@ export function MemberHome() {
               </dd>
               <dt>담당 지도자</dt>
               <dd>
-                매니저 <StaffNameLink id={next.session.managerId} /> · 코치 {next.session.coachIds.map((c) => staffName(state, c)).join(', ')}
+                온유 코치 <StaffNameLink id={next.session.managerId} /> · 코치 {next.session.coachIds.map((c) => staffName(state, c)).join(', ')}
               </dd>
               <dt>컨디션</dt>
               <dd>

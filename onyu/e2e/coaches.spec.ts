@@ -92,6 +92,8 @@ test('예약 화면의 담당 지도자 → 같은 인물의 코치 소개, 새�
   const homeLink = kv.getByRole('link', { name: /코치 소개 보기$/ });
   const homeName = (await homeLink.textContent())!.trim();
   expect(ORDER).toContain(homeName);
+  await expect(kv).toContainText(`온유 코치 ${homeName}`);
+  await expect(kv).not.toContainText('매니저');
   await homeLink.click();
   await expect(page).toHaveURL(/\/member\/coaches#coach-/);
   const target = page.locator('.coach-card.is-target');
@@ -113,6 +115,8 @@ test('예약 화면의 담당 지도자 → 같은 인물의 코치 소개, 새�
   const confirmUrl = page.url();
   const link = page.locator('dl.kv').getByRole('link', { name: /코치 소개 보기$/ });
   const name = (await link.textContent())!.trim();
+  await expect(page.locator('dl.kv')).toContainText(`온유 코치 ${name}`);
+  await expect(page.locator('dl.kv')).not.toContainText('매니저');
   await link.click();
   await expect(page.locator('.coach-card.is-target h2')).toHaveText(name);
   await page.getByRole('button', { name: '이전으로' }).click();

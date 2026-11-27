@@ -195,7 +195,7 @@ function ConfirmStep({ sessionId, onBack }: { sessionId: string; onBack: () => v
           <dd>{GAMES[s.program.game].name}</dd>
           <dt>지도자</dt>
           <dd>
-            매니저 <StaffNameLink id={s.managerId} /> · 코치 {s.coachIds.map((c) => staffName(state, c)).join(', ')}
+            온유 코치 <StaffNameLink id={s.managerId} /> · 코치 {s.coachIds.map((c) => staffName(state, c)).join(', ')}
           </dd>
           <dt>남은 자리</dt>
           <dd>
