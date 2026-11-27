@@ -10,6 +10,7 @@ import { ConditionForm } from '../../components/ConditionForm';
 import { Icon } from '../../components/Icon';
 import { Empty, Notice, PageHead, PageNav, useRunner } from '../../components/ui';
 import { MembershipLine } from './shared';
+import { StaffNameLink } from '../Coaches';
 
 const STEPS = ['날짜 선택', '시간 선택', '예약 확인', '완료'];
 
@@ -194,7 +195,7 @@ function ConfirmStep({ sessionId, onBack }: { sessionId: string; onBack: () => v
           <dd>{GAMES[s.program.game].name}</dd>
           <dt>지도자</dt>
           <dd>
-            매니저 {staffName(state, s.managerId)} · 코치 {s.coachIds.map((c) => staffName(state, c)).join(', ')}
+            매니저 <StaffNameLink id={s.managerId} /> · 코치 {s.coachIds.map((c) => staffName(state, c)).join(', ')}
           </dd>
           <dt>남은 자리</dt>
           <dd>

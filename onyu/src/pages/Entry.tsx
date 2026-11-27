@@ -30,6 +30,9 @@ export function Entry() {
           <button type="button" className="btn btn-ghost" onClick={() => navigate('/facility', { state: { from: '/' } })}>
             시설 둘러보기
           </button>
+          <button type="button" className="btn btn-ghost" onClick={() => navigate('/coaches', { state: { from: '/' } })}>
+            코치 소개
+          </button>
         </div>
       </div>
     </main>

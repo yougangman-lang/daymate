@@ -4,6 +4,7 @@ import { ManagerOnly, MemberLayout, StaffLayout } from './components/Layouts';
 import { Entry } from './pages/Entry';
 import { FacilityPage } from './pages/FacilityTour';
 import { TrialPage } from './pages/Trial';
+import { MemberCoachesPage, PublicCoachesPage } from './pages/Coaches';
 import { MemberHome } from './pages/member/Home';
 import { BookPage, BookDone } from './pages/member/Book';
 import { BodyPage } from './pages/member/Body';
@@ -28,9 +29,11 @@ export function App({ store }: { store: Store }) {
           <Route path="/" element={<Entry />} />
           <Route path="/facility" element={<FacilityPage />} />
           <Route path="/trial" element={<TrialPage />} />
+          <Route path="/coaches" element={<PublicCoachesPage />} />
           <Route path="/member" element={<MemberLayout />}>
             <Route index element={<MemberHome />} />
             <Route path="book" element={<BookPage />} />
+            <Route path="coaches" element={<MemberCoachesPage />} />
             <Route path="book/done/:bookingId" element={<BookDone />} />
             <Route path="body" element={<BodyPage />} />
             <Route path="body/report" element={<BodyReport />} />

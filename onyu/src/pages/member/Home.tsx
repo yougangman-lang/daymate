@@ -10,6 +10,7 @@ import { ConditionForm, ConditionSummary } from '../../components/ConditionForm'
 import { Icon, type IconName } from '../../components/Icon';
 import { Notice, useRunner } from '../../components/ui';
 import { MembershipLine } from './shared';
+import { StaffNameLink } from '../Coaches';
 
 export function MemberHome() {
   const state = useAppState();
@@ -88,7 +89,7 @@ export function MemberHome() {
               </dd>
               <dt>담당 지도자</dt>
               <dd>
-                매니저 {staffName(state, next.session.managerId)} · 코치 {next.session.coachIds.map((c) => staffName(state, c)).join(', ')}
+                매니저 <StaffNameLink id={next.session.managerId} /> · 코치 {next.session.coachIds.map((c) => staffName(state, c)).join(', ')}
               </dd>
               <dt>컨디션</dt>
               <dd>
@@ -134,6 +135,9 @@ export function MemberHome() {
 
       <Link className="btn btn-secondary btn-block" to="/facility" state={{ from: '/member' }}>
         <Icon name="info" size={22} /> 시설 둘러보기
+      </Link>
+      <Link className="btn btn-secondary btn-block" to="/member/coaches" state={{ from: '/member' }}>
+        <Icon name="users" size={22} /> 코치 소개
       </Link>
 
       {alerts.length > 0 && (

@@ -13,7 +13,7 @@ export interface BackState {
 }
 
 /** 내부 경로만 허용 ('//' 같은 외부 주소 차단) */
-function safeInternal(path: unknown): string | null {
+export function safeInternal(path: unknown): string | null {
   return typeof path === 'string' && path.startsWith('/') && !path.startsWith('//') ? path : null;
 }
 
