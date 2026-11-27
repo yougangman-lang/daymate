@@ -29,6 +29,21 @@ export function isValidState(v: unknown): v is AppState {
   return true;
 }
 
+const OLD_EXPLAIN_TEXT = '쉬운 설명은 매니저가 확인한 뒤';
+const NEW_EXPLAIN_TEXT = '쉬운 설명은 온유 담당자가 확인한 뒤';
+
+/**
+ * 이전에 저장된 시연 알림 문구만 새 명칭으로 바꾼다.
+ * 해당 문구가 든 알림의 본문만 고치고 읽음 상태·예약·출석·측정 기록은 그대로 둔다. 바꿀 것이 없으면 같은 객체를 돌려준다.
+ */
+export function migrateNotificationText(state: AppState): AppState {
+  if (!state.notifications.some((n) => n.body.includes(OLD_EXPLAIN_TEXT))) return state;
+  return {
+    ...state,
+    notifications: state.notifications.map((n) => (n.body.includes(OLD_EXPLAIN_TEXT) ? { ...n, body: n.body.replaceAll(OLD_EXPLAIN_TEXT, NEW_EXPLAIN_TEXT) } : n)),
+  };
+}
+
 interface KV {
   getItem(k: string): string | null;
   setItem(k: string, v: string): void;
@@ -51,7 +66,17 @@ export function createLocalRepository(kv: KV | undefined = globalThis.localStora
       } catch {
         parsed = undefined;
       }
-      if (isValidState(parsed)) return { state: parsed, notice: null };
+      if (isValidState(parsed)) {
+        const state = migrateNotificationText(parsed);
+        if (state !== parsed) {
+          try {
+            kv?.setItem(STORAGE_KEY, JSON.stringify(state));
+          } catch {
+            /* 저장 실패 시 다음 로드에서 다시 적용 */
+          }
+        }
+        return { state, notice: null };
+      }
       try {
         kv?.setItem(BACKUP_KEY, raw);
       } catch {

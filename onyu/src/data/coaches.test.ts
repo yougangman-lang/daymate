@@ -5,6 +5,7 @@ import { createSeed, STAFF } from './seed';
 import { CAPACITY, sessionsOn } from '../domain/schedule';
 import { addDays } from '../lib/time';
 import { createLocalRepository, STORAGE_KEY } from '../adapters/storage';
+import type { AppState } from '../domain/types';
 
 const kind = (id: string) => STAFF.find((s) => s.id === id)?.kind;
 
@@ -47,3 +48,45 @@ describe('기존 브라우저 저장 데이터', () => {
     expect(state.staff.map((s) => [s.id, s.name, s.kind])).toEqual(STAFF.map((s) => [s.id, s.name, s.kind]));
   });
 });
+
+describe('이전 알림 문구 변경', () => {
+  const now = new Date('2026-11-25T07:30:00+09:00');
+  const memKv = (init: string) => {
+    const mem = new Map([[STORAGE_KEY, init]]);
+    return { mem, kv: { getItem: (k: string) => mem.get(k) ?? null, setItem: (k: string, v: string) => void mem.set(k, v), removeItem: (k: string) => void mem.delete(k) } };
+  };
+  /** 이전 버전에서 저장된 상태: 매니저 문구 알림 2건(읽음 1건, 안 읽음 1건) */
+  function oldSaved(): AppState {
+    const s = createSeed(now);
+    const notifications = s.notifications.map((n) => (n.id === 'nt-seed-3' ? { ...n, body: '쉬운 설명은 매니저가 확인한 뒤 알려드려요.' } : n));
+    notifications.push({ ...notifications.find((n) => n.id === 'nt-seed-3')!, id: 'nt-old-2', body: '측정 기록은 바로 볼 수 있어요. 쉬운 설명은 매니저가 확인한 뒤 알려드려요.', read: true });
+    return { ...s, notifications };
+  }
+
+  it('해당 알림 본문만 바꾸고 읽음 상태·다른 기록은 보존, 초기화 없음, 저장소에도 반영', () => {
+    const before = oldSaved();
+    const { mem, kv } = memKv(JSON.stringify(before));
+    const { state, notice } = createLocalRepository(kv).load(now);
+    expect(notice).toBeNull();
+    const byId = (s: AppState, id: string) => s.notifications.find((n) => n.id === id)!;
+    expect(byId(state, 'nt-seed-3').body).toBe('쉬운 설명은 온유 담당자가 확인한 뒤 알려드려요.');
+    expect(byId(state, 'nt-old-2').body).toBe('측정 기록은 바로 볼 수 있어요. 쉬운 설명은 온유 담당자가 확인한 뒤 알려드려요.');
+    expect(byId(state, 'nt-seed-3').read).toBe(false);
+    expect(byId(state, 'nt-old-2').read).toBe(true);
+    // 문구 외에는 그대로
+    const strip = (s: AppState) => ({ ...s, notifications: s.notifications.map((n) => ({ ...n, body: '' })) });
+    expect(strip(state)).toEqual(strip(before));
+    for (const n of state.notifications.filter((n) => !['nt-seed-3', 'nt-old-2'].includes(n.id))) expect(n).toEqual(byId(before, n.id));
+    expect(JSON.parse(mem.get(STORAGE_KEY)!)).toEqual(state);
+  });
+
+  it('이미 바뀐 데이터는 다시 저장하지 않는다', () => {
+    const saved = JSON.stringify(createSeed(now));
+    const { kv } = memKv(saved);
+    let writes = 0;
+    const counting = { ...kv, setItem: (k: string, v: string) => { writes++; kv.setItem(k, v); } };
+    createLocalRepository(counting).load(now);
+    expect(writes).toBe(0);
+  });
+});
+

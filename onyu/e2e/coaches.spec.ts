@@ -50,6 +50,14 @@ async function expectRoles(dl: import('@playwright/test').Locator, managerName: 
   for (const c of coaches) expect(ORDER).not.toContain(c);
   await expect(dl.locator('dt:text-is("수업 매니저") + dd')).toHaveText(managerName);
   await expect(dl).not.toContainText('온유 코치');
+  // 링크는 수업 매니저 1개뿐: 가상 코치 이름은 일반 텍스트
+  await expect(dl.locator('dt:text-is("담당 코치") + dd a')).toHaveCount(0);
+  const links = dl.getByRole('link');
+  await expect(links).toHaveCount(1);
+  await expect(links).toHaveText(managerName);
+  // 연결 주소가 같은 인물의 카드(사진 파일 이름)를 가리킨다
+  const file = FILES[ORDER.indexOf(managerName)];
+  await expect(links).toHaveAttribute('href', `/member/coaches#coach-${file}`);
 }
 
 test('시작 화면 → 코치 소개(공개) → 글씨 크게 → 이전으로 시작 화면', async ({ page }, info) => {
@@ -150,3 +158,45 @@ test('직접 주소 접속·새로고침', async ({ page }) => {
   expect(res.status()).toBe(200);
   expect(res.headers()['content-type']).toContain('image/png');
 });
+
+test('네 명의 수업 매니저 모두 자기 카드로 연결, 가상 코치는 링크 없음', async ({ page }) => {
+  // 날짜·시간대별로 수업 매니저가 교대로 바뀌므로 확인 화면을 여러 개 열어 네 명을 모두 확인한다
+  const seen = new Set<string>();
+  for (const date of ['2026-11-25', '2026-11-26', '2026-11-27', '2026-11-30']) {
+    await page.goto(`/member/book?date=${date}`);
+    const hrefs = await page.getByRole('link', { name: / 선택$/ }).evaluateAll((els) => els.map((e) => e.getAttribute('href')!));
+    for (const href of hrefs) {
+      if (seen.size === 4) break;
+      await page.goto(href);
+      const dl = page.locator('dl.kv');
+      const name = (await dl.locator('dt:text-is("수업 매니저") + dd').textContent())!.trim();
+      if (seen.has(name)) continue;
+      await expectRoles(dl, name);
+      await dl.getByRole('link', { name }).click();
+      const target = page.locator('.coach-card.is-target');
+      await expect(target.locator('h2')).toHaveText(name);
+      await expect(target.getByRole('img')).toHaveAttribute('src', `/images/coaches/${FILES[ORDER.indexOf(name)]}.png`);
+      seen.add(name);
+    }
+  }
+  expect([...seen].sort()).toEqual([...ORDER].sort());
+});
+
+test('기존 저장 데이터의 매니저 문구 알림이 화면에서도 새 문구로 표시', async ({ page }) => {
+  await page.goto('/member');
+  await page.evaluate(() => {
+    const key = 'onyu:demo:v1';
+    const s = JSON.parse(localStorage.getItem(key)!);
+    for (const n of s.notifications) if (n.id === 'nt-seed-3') n.body = '쉬운 설명은 매니저가 확인한 뒤 알려드려요.';
+    s.demo.memberId = s.notifications.find((n: { id: string }) => n.id === 'nt-seed-3').memberId;
+    localStorage.setItem(key, JSON.stringify(s));
+  });
+  await page.reload();
+  await expect(page.getByText('쉬운 설명은 온유 담당자가 확인한 뒤 알려드려요.')).toBeVisible();
+  await expect(page.getByText(/매니저가 확인한 뒤/)).toHaveCount(0);
+  await expect(page.getByText(/저장된 시연 데이터를 읽을 수 없어|형식이 바뀌어/)).toHaveCount(0);
+  const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('onyu:demo:v1')!).notifications.find((n: { id: string }) => n.id === 'nt-seed-3'));
+  expect(stored.body).toBe('쉬운 설명은 온유 담당자가 확인한 뒤 알려드려요.');
+  expect(stored.read).toBe(false);
+});
+
