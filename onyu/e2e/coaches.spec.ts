@@ -37,6 +37,16 @@ async function expectCardsIntact(page: Page) {
       expect(await t.evaluate((el) => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
     }
     await expect(card.locator('.coach-role')).toHaveText('온유 코치');
+    // 자격 기준 문구와 그 영역이 없고, 이름 영역 아래에 빈 여백이 남지 않는다
+    await expect(card).not.toContainText('자격 기준');
+    await expect(card.locator('.coach-qual')).toHaveCount(0);
+    const gap = await card.evaluate((el) => {
+      const body = el.querySelector('.coach-card-body')!;
+      const last = body.lastElementChild!.getBoundingClientRect();
+      const pad = parseFloat(getComputedStyle(body).paddingBottom);
+      return body.getBoundingClientRect().bottom - last.bottom - pad;
+    });
+    expect(Math.abs(gap)).toBeLessThan(2);
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 }

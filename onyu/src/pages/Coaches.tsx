@@ -33,7 +33,6 @@ function CoachGrid({ highlight }: { highlight?: string }) {
             <div className="coach-card-body">
               <h2 id={nameId}>{staff.name}</h2>
               <p className="coach-role">온유 코치</p>
-              <p className="coach-qual">자격 기준: {staff.plannedQualification}</p>
               {highlight === anchor && <p className="coach-here">예약 화면에서 선택한 수업 매니저예요</p>}
             </div>
           </li>
